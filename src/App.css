@@ -1,0 +1,14 @@
+.printers .printer-card {
+  width: calc(100% - 2rem);
+  border: 1px solid darkgray;
+  padding: 1rem;
+  margin: 1rem;
+  box-sizing: border-box;
+}
+
+.printers .printer-card.add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+}

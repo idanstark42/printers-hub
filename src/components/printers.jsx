@@ -5,16 +5,17 @@ import { FaPlus, FaPrint } from 'react-icons/fa'
 
 export default function Printers () {
   const printersCollection = new PrinterCollection()
-
+  
   return <div className="printers">
-    {printersCollection.printers.map(printer => <div className="printer-card">
+    {printersCollection.printers.map(printer => <Link className="printer-card" to={`/printer/${printer.name}`}>
       <div className="title">
         <FaPrint />
+        {printer.name}
       </div>
-    </div>)}
-    <div className="printer-card add">
+    </Link>)}
+    <Link className="printer-card add" to="/printer/new">
       <FaPlus />
       Add printer
-    </div>
+    </Link>
   </div>
 }

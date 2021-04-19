@@ -8,27 +8,26 @@ const API_KEY_HEADER = 'X-Api-Key'
 
 let _loggedIn = false
 
-export const init = () => {
-	const savedApiKey = Cookies.get(API_KEY_COOKIE)
-	if (savedApiKey) {
-		login(savedApiKey)
-	}
-}
-
 export const loggedIn = () => _loggedIn
 
 export const login = apiKey => {
   axios.defaults.headers.common[API_KEY_HEADER] = apiKey
   Cookies.set(API_KEY_COOKIE, apiKey)
-	this._loggedIn = true
+  _loggedIn = true
 }
 
 export const logout = () => {
-	axios.defaults.headers.common[API_KEY_HEADER] = undefined
+  axios.defaults.headers.common[API_KEY_HEADER] = undefined
   Cookies.set(API_KEY_COOKIE, undefined)
-	this._loggedIn = false
+  _loggedIn = false
 }
 
-export const request = (method, action, data) => {
-  return axios(`${config.api}/${action}`, { method, data })
+const savedApiKey = Cookies.get(API_KEY_COOKIE)
+
+if (savedApiKey) {
+  login(savedApiKey)
+}
+
+export const request = async (method, action, data) => {
+  return (await axios(`${config.api}/${action}`, { method, data })).data
 }

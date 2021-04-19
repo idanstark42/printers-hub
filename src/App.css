@@ -36,6 +36,12 @@
   margin-top: 1rem;
 }
 
+.printer video {
+  width: 100vw;
+  height: 30vh;
+  background: black;
+}
+
 input {
   padding: 0.5rem;
   border-radius: 0.5rem;

@@ -6,6 +6,7 @@ import Printer from '../data/printer'
 
 export default function NewPrinter (props) {
   const printerCollection = new PrinterCollection()
+  const [initialized, setInitialized] = useState('')
   
   const [name, setName] = useState('')
   const [port, setPort] = useState('')
@@ -17,15 +18,19 @@ export default function NewPrinter (props) {
   const [printerProfiles, setPrinterProfiles] = useState([])
 
   useEffect(async () => {
-    const options = await connectionOptions()
-    setPorts(options.ports)
-    setBaudrates(options.baudrates)
-    setPrinterProfiles(options.printerProfiles)
+    if (!initialized) {
+      setInitialized(true)
+      const options = await connectionOptions()
+      setPorts(options.ports)
+      setBaudrates(options.baudrates)
+      setPrinterProfiles(options.printerProfiles)
+    }
   })
 
   const submit = () => {
     const printer = new Printer({ name, connection: { port, baudrate, printerProfile } })
     printerCollection.addPrinter(printer)
+    props.history.push('/')
   }
 
 

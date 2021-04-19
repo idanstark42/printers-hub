@@ -14,6 +14,7 @@ export const login = apiKey => {
   axios.defaults.headers.common[API_KEY_HEADER] = apiKey
   Cookies.set(API_KEY_COOKIE, apiKey)
   _loggedIn = true
+  return _loggedIn
 }
 
 export const logout = () => {

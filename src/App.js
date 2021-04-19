@@ -14,9 +14,9 @@ export default function App() {
     <WithLogin>
       <Router>
  	      <Switch>
-          <Route path="/printer/new"><NewPrinter /></Route>
-          <Route path="/printer/:name"><Printer /></Route>
-          <Route path="/"><Printers /></Route>
+          <Route path="/printer/new" component={NewPrinter} />
+          <Route path="/printer/:name" component={Printer} />
+          <Route path="/" component={Printers} />
         </Switch>
       </Router>
     </WithLogin>
